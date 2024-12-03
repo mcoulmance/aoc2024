@@ -1,7 +1,7 @@
 module IMap = Map.Make(Int)
 
-let load_input path =
-  let file = open_in path in
+let input =
+  let file = open_in "assets/day1_input" in
 
   let rec aux acc1 acc2 =
     match In_channel.input_line file with
@@ -24,13 +24,13 @@ let load_input path =
 
 
 
-let puzzle1 () =
-  let (l1, l2) = load_input "assets/day1_input" in
+let puzzle1 =
+  let (l1, l2) = input in
   List.fold_left2 (fun acc a b -> acc + (abs (a - b))) 0 l1 l2
 
 
-let puzzle2 () =
-  let (l1, l2) = load_input "assets/day1_input" in
+let puzzle2 =
+  let (l1, l2) = input in
   
   let occ_l2 = 
     List.fold_left (fun acc a -> IMap.update a (function None -> Some 1 | Some i -> Some (i+1)) acc) IMap.empty l2 in
